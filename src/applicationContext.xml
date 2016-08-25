@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
+	  http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context.xsd  ">
+
+	<!-- 启用aop -->
+	<aop:aspectj-autoproxy />
+
+	<!-- 引入注解的配置方式,对cn.tmxk.spring.demo5下的类进行扫描 -->
+	<!-- <context:component-scan base-package="cn.tmxk.spring.demo5"></context:component-scan>
+		<context:component-scan base-package="cn.tmxk.spring.aop_demo"></context:component-scan>
+		<context:component-scan base-package="cn.tmxk.spring.aop_demo2"></context:component-scan> -->
+	<!-- 对根目录下的包进行扫描 -->
+	<context:component-scan base-package="cn.tmxk.spring.jdbc"></context:component-scan>
+	<!-- 使用XML配置bean的方式进行组装 -->
+
+	<bean id="usebean" class="cn.tmxk.spring.demo2.UseBean">
+		<property name="helloBean" ref="enhellobean"></property>
+	</bean>
+
+	<bean id="enhellobean" class="cn.tmxk.spring.demo2.EnHelloBean"></bean>
+	<bean id="zhhellobean" class="cn.tmxk.spring.demo2.ZhHelloBean"></bean>
+
+	<bean id="user" class="cn.tmxk.spring.demo2.User">
+		<property name="username" value="maxiao"></property>
+		<property name="password" value="password001"></property>
+	</bean>
+	<!-- //导入spring JDBC相关的东东 -->
+	<import resource="classpath*:spring-jdbc.xml" />
+</beans>
