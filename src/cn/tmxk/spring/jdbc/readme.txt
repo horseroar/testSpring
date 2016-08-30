@@ -120,3 +120,13 @@ PS:经测试之后的结果来看，在获取List<T>方面的功能很弱，只�
 达内sping教程PDF第5章(基本XML配置及注解事务)
 http://www.tuicool.com/articles/niERn2
 https://segmentfault.com/a/1190000002870283
+
+
+16:15 2016-8-30
+springJDBC返回对象列表的问题
+PS:  后经参考http://www.360doc.com/content/14/0625/22/834950_389747670.shtml网友的文章，学习到spring jdbc是可以直接指定class,
+来返回指定类型的List<T>对象列表：
+	主要调用形式：
+		namedJdbcTemplate.query(sql,paramMap,new BeanPropertyRowMapper(User.class));
+	或者
+		namedJdbcTemplate.getJdbcOperations().query(sql,new Object[],new BeanPropertyRowMapper(User.class));		
